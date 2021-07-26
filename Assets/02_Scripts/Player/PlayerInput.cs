@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerInput : MonoBehaviour
 {
     private float moveX, moveZ;
@@ -15,15 +15,20 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        Move();
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Map2");
+        }
     }
 
-    private void Move()
-    {
-        moveX = Input.GetAxisRaw("Horizontal");
-        moveZ = Input.GetAxisRaw("Vertical");
 
-        rigid.velocity = new Vector3(moveX, 0, moveZ) * speed;
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.CompareTag("Spring"))
+        {
+            rigid.AddForce(Vector3.up * 10f);
+        }
     }
 
 

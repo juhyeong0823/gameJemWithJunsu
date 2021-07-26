@@ -14,7 +14,7 @@ public class GrapplingGun : MonoBehaviour
 
     public Transform shootPos, cameraPos, player; // 로프가 나가는 위치, 카메라 위치, 플레이어 위치
 
-    public float maxDistance = 100f;
+    public float maxDistance = 30f;
 
     private SpringJoint joint;
 
@@ -42,11 +42,11 @@ public class GrapplingGun : MonoBehaviour
 
     void Grap()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             StartGrapple();
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(1))
         {
             StopGrapple();
         }
@@ -56,7 +56,6 @@ public class GrapplingGun : MonoBehaviour
     void StartGrapple()
     {
         ray = cam.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction * 100f);
 
         RaycastHit hit;
 
@@ -71,7 +70,7 @@ public class GrapplingGun : MonoBehaviour
             float distanceToPoint = Vector3.Distance(grapplePoint, shootPos.position);
 
             joint.maxDistance = distanceToPoint * 0.8f;
-            joint.maxDistance = distanceToPoint * 0.25f;
+            joint.maxDistance = distanceToPoint * 0.4f;
 
             lr.positionCount = 2;
         }
