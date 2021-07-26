@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        if(speed < 15)
+        if(speed < 10)
         {
             speed += Time.deltaTime * 5f;
         }
