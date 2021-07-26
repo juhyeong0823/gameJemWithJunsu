@@ -37,10 +37,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public SaveManager saveManager = new SaveManager();
 
 
-    private void Start()
-    {
-        saveManager.Save();
-    }
 
     public bool soundOn = true;
 
@@ -49,9 +45,13 @@ public class GameManager : MonoBehaviour
 
 
     [Header("음향")] // 인스펙터에서 이걸로 보여줌
-    public float mainSound; // 전체음량
+    public float mainSound  ; // 전체음량
     public float effectSound; // 효과음
-    public float bgmSound; // 효과음
+    public float bgmSound   ;   // 효과음
+
+    //PlayerRotate 
+    public float rotSpeed = 1500f;
+
 
     public void LoadScene(string name)
     {

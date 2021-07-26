@@ -10,20 +10,40 @@ public class StartSceneManager : MonoBehaviour
     public Button settingBtn;
     public Button exitBtn;
 
+    public GameObject helpMessage;
+    public GameObject setting;
+    public GameObject exit;
+
+    private GameObject onPanel;
+
     void Start()
     {
-       startBtn.onClick.AddListener(() =>
-       {
-           GameManager.instance.LoadScene("StageSelect");
-       });
-
         startBtn.onClick.AddListener(() =>
         {
             GameManager.instance.LoadScene("StageSelect");
         });
 
+        helpMessageBtn.onClick.AddListener(() =>
+        {
+            helpMessage.SetActive(true);
+            exit = helpMessage;
+        });
+
+        settingBtn.onClick.AddListener(() =>
+        {
+            setting.SetActive(true);
+            exit.SetActive(true);
+            onPanel = setting;
+        });
+
+        exitBtn.onClick.AddListener(() =>
+        {
+            exit.SetActive(false);
+            onPanel.SetActive(false);
+        });
+
 
     }
 
-    
+
 }
