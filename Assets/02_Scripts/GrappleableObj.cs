@@ -4,12 +4,10 @@ public class GrappleableObj : MonoBehaviour
 {
     private MeshRenderer mesh;
 
-
     private void Awake()
     {
         mesh = GetComponent<MeshRenderer>();
     }
-
 
     private void OnTriggerEnter(Collider other)
     {

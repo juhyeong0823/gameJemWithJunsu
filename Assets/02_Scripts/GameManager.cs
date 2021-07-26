@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,10 +31,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    [HideInInspector] public UIManager uiManager = new UIManager();
-    [HideInInspector] public SaveManager saveManager = new SaveManager();
-
-
 
     public bool soundOn = true;
 
@@ -49,12 +43,13 @@ public class GameManager : MonoBehaviour
     public float effectSound; // 효과음
     public float bgmSound   ;   // 효과음
 
-    //PlayerRotate 
-    public float rotSpeed = 1500f;
-
-
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
+    }
+
+    public string GetSceneName()
+    {
+        return SceneManager.GetActiveScene().name;
     }
 }

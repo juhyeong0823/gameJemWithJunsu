@@ -5,68 +5,34 @@ using UnityEngine;
 public class GrapplingGun : MonoBehaviour
 {
     private LineRenderer lr; // 로프 그려주는거고
-    [SerializeField]
-    private GameObject gun; // 라인렌더러 받아오는 용도로 만들어놓은 겁니다.
+
+    [SerializeField]  private GameObject gun; // 라인렌더러 받아오는 용도로 만들어놓은 겁니다.
 
     private Vector3 grapplePoint;
 
     public LayerMask whatIsGrappleable; // 잡을 수 있는 레이어
     public LayerMask whatIsGrappleable2; // 바닥  레이어
 
-    public Transform shootPos, cameraPos, player; // 로프가 나가는 위치, 카메라 위치, 플레이어 위치
+    public Transform shootPos, player; // 로프가 나가는 위치, 카메라 위치, 플레이어 위치
 
     public float maxDistance = 30f;
+    public float damper, spring, mass;
 
     private SpringJoint joint;
 
-
     public Camera cam;
 
-    public float damper, spring, mass;
-
     Ray ray;
-
-    Vector3 destination;
-    bool isMove;
 
     private void Awake()
     {
         lr = gun.GetComponent<LineRenderer>();
     }
 
-    private void SetDestination(Vector3 dest) 
-    { 
-        destination = dest;
-        isMove = true;
-    }
-
-    private void Move()
-    {
-        if (isMove) 
-        { 
-            if (Vector3.Distance(destination, transform.transform.parent.parent.transform.position) <= 0.1f)
-            {
-                isMove = false; 
-                return; 
-            }
-            var dir = destination - transform.parent.transform.parent.transform.position;
-            dir.y = 0;
-            transform.parent.transform.parent.transform.position += dir.normalized * Time.deltaTime * 5f;
-        } 
-    }
-
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) 
-        { 
-            RaycastHit hit; 
-            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, whatIsGrappleable2))
-            {
-                SetDestination(hit.point);
-            } 
-        }
-        Move();
+
 
         Grap();
     }
@@ -75,8 +41,6 @@ public class GrapplingGun : MonoBehaviour
     {
         DrawRope(ray);
     }
-
-
 
     void Grap()
     {

@@ -7,6 +7,8 @@ TagManager:
   - Map
   - Spring
   - Death
+  - Slow
+  - Chaser
   layers:
   - Default
   - TransparentFX

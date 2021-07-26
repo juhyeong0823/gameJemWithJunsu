@@ -3,28 +3,30 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
-
-    public float acceleration; //°¡¼Óµµ
+    public float speed = 10f;
 
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        speed += Time.deltaTime;
+        speed += Time.deltaTime * 5f;
 
 
         if(Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("Map2");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
    
     private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.CompareTag("Death"))
-        {   
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(col.gameObject.CompareTag("Slow"))
+        {
+            speed = speed % 2;
+        }
+        else if(col.gameObject.CompareTag("Chaser"))
+        {
+            UIManager.instance.restartPanel.enabled = true;
         }
     }
 }

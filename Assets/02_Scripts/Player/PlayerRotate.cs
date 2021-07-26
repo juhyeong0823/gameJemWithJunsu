@@ -10,7 +10,6 @@ public class PlayerRotate : MonoBehaviour // 사실상 카메라가 돌아가는 겁니다.
     private void Awake()
     {
         Invoke("CanRotate", 1.5f);
-
     }
     
     float rx;
