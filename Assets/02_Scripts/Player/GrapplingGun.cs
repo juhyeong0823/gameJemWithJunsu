@@ -17,6 +17,8 @@ public class GrapplingGun : MonoBehaviour
 
     private SpringJoint joint;
 
+    private Vector3 mousePos;
+
     public float damper, spring, mass;
 
     private void Awake()
@@ -48,8 +50,9 @@ public class GrapplingGun : MonoBehaviour
    
     void StartGrapple()
     {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(player.position, cameraPos.forward, out hit, maxDistance, whatIsGrappleable))
+        if (Physics.Raycast(player.position, mousePos, out hit, maxDistance, whatIsGrappleable))
         {
             grapplePoint = hit.transform.position;
             joint = player.gameObject.AddComponent<SpringJoint>();
