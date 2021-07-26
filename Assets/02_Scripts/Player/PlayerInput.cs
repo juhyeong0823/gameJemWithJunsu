@@ -1,36 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class PlayerInput : MonoBehaviour
 {
-    public Transform drawCirclePosition;
-
-    private Vector3 movedir;
-    private Vector3 rayDir = new Vector3(0, -1, 0);
-
-    private bool isJumping;
-
-    public float rayDistance;
     private float moveX, moveZ;
     public float speed;
     public float runSpeed;
 
+    Rigidbody rigid;
 
+    private void Start()
+    {
+        rigid = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
-        moveX = Input.GetAxisRaw("Horizontal") * Time.deltaTime;
-        moveZ = Input.GetAxisRaw("Vertical") * Time.deltaTime;
-
-        RaycastHit hit;
-
-        isJumping = Physics.Raycast(transform.position, rayDir * rayDistance, out hit);
-        Debug.DrawRay(transform.position, rayDir * rayDistance, Color.blue);
+        Move();
     }
 
-    private void move()
+    private void Move()
     {
+        moveX = Input.GetAxisRaw("Horizontal");
+        moveZ = Input.GetAxisRaw("Vertical");
 
+        rigid.velocity = new Vector3(moveX, 0, moveZ) * speed;
     }
+
+
 }
