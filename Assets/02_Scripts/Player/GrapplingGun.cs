@@ -44,14 +44,14 @@ public class GrapplingGun : MonoBehaviour
     {
         if (isMove) 
         { 
-            if (Vector3.Distance(destination, transform.parent.transform.position) <= 0.1f)
+            if (Vector3.Distance(destination, transform.transform.parent.parent.transform.position) <= 0.1f)
             {
                 isMove = false; 
                 return; 
             }
-            var dir = destination - transform.parent.transform.position;
+            var dir = destination - transform.parent.transform.parent.transform.position;
             dir.y = 0;
-            transform.parent.transform.position += dir.normalized * Time.deltaTime * 5f;
+            transform.parent.transform.parent.transform.position += dir.normalized * Time.deltaTime * 5f;
         } 
     }
 
