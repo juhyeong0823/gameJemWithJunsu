@@ -9,10 +9,13 @@ public class Player : MonoBehaviour
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        speed += Time.deltaTime * 5f;
+        if(speed < 15)
+        {
+            speed += Time.deltaTime * 5f;
+        }
 
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

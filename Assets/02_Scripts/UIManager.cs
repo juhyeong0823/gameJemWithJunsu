@@ -35,6 +35,8 @@ public class UIManager : MonoBehaviour
     #endregion
 
     [Header("»ç¿îµå")]
+    public Canvas soundPanel;
+
     public Button soundBtn;
     public AudioMixer audioMixer;
     private float volume;
@@ -56,6 +58,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        //restartPanel
         restartBtn.onClick.AddListener(() =>
         {
             GameManager.instance.LoadScene(GameManager.instance.GetSceneName());
@@ -97,11 +100,17 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
-            menuPanel.enabled = true;
+            if (GameManager.instance.isPlaying)
+            {
+                restartPanel.enabled = true;
+            }
+            else
+            {
+                menuPanel.enabled = true;
+            }
         }
     }
-
 }

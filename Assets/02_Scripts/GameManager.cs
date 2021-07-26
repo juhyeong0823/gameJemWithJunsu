@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
+    public bool isPlaying = false;
+
     public bool soundOn = true;
 
     [Header("게임 데이터들")] // 인스펙터에서 이걸로 보여줌

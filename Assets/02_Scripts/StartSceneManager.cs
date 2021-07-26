@@ -10,7 +10,6 @@ public class StartSceneManager : MonoBehaviour
     public Button exitBtn;
 
     public GameObject helpMessage;
-    private GameObject onPanel;
 
     void Start()
     {
@@ -22,12 +21,12 @@ public class StartSceneManager : MonoBehaviour
         helpMessageBtn.onClick.AddListener(() =>
         {
             helpMessage.SetActive(true);
-            onPanel = helpMessage;
+
         });
+
         exitBtn.onClick.AddListener(() =>
         {
-            exitBtn.gameObject.SetActive(false);
-            onPanel.SetActive(false);
+            helpMessage.SetActive(false);
         });
     }
 }
