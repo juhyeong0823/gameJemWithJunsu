@@ -17,11 +17,12 @@ public class GrapplingGun : MonoBehaviour
 
     private SpringJoint joint;
 
-    private Vector3 mousePos;
 
     public Camera cam;
 
     public float damper, spring, mass;
+
+    Ray ray;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class GrapplingGun : MonoBehaviour
 
     private void LateUpdate()
     {
-        DrawRope();
+        DrawRope(ray);
     }
     void Grap()
     {
@@ -49,10 +50,10 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
-   
+
     void StartGrapple()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        ray = cam.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
 
 
@@ -60,6 +61,7 @@ public class GrapplingGun : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance, whatIsGrappleable))
         {
+
             grapplePoint = hit.transform.position;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -72,7 +74,7 @@ public class GrapplingGun : MonoBehaviour
 
             lr.positionCount = 2;
         }
-    }   
+    }
 
     void StopGrapple()
     {
@@ -80,9 +82,9 @@ public class GrapplingGun : MonoBehaviour
         Destroy(joint);
     }
 
-    void DrawRope()
+    void DrawRope(Ray _ray)
     {
-        Debug.DrawRay(shootPos.position, cameraPos.forward * maxDistance, Color.blue);
+        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red);
         if (!joint) return; // 조인트가 없다 = 로프 커넥트가 안된거니까 그리지도 말아야 합니당
         lr.SetPosition(0, shootPos.position);
         lr.SetPosition(1, grapplePoint);
