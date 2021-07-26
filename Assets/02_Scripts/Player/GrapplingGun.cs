@@ -11,6 +11,7 @@ public class GrapplingGun : MonoBehaviour
     private Vector3 grapplePoint;
 
     public LayerMask whatIsGrappleable; // 잡을 수 있는 레이어
+    public LayerMask whatIsGrappleable2; // 바닥  레이어
 
     public Transform shootPos, cameraPos, player; // 로프가 나가는 위치, 카메라 위치, 플레이어 위치
 
@@ -25,13 +26,48 @@ public class GrapplingGun : MonoBehaviour
 
     Ray ray;
 
+    Vector3 destination;
+    bool isMove;
+
     private void Awake()
     {
         lr = gun.GetComponent<LineRenderer>();
     }
 
+    private void SetDestination(Vector3 dest) 
+    { 
+        destination = dest;
+        isMove = true;
+    }
+
+    private void Move()
+    {
+        if (isMove) 
+        { 
+            if (Vector3.Distance(destination, transform.parent.transform.position) <= 0.1f)
+            {
+                isMove = false; 
+                return; 
+            }
+            var dir = destination - transform.parent.transform.position;
+            dir.y = 0;
+            transform.parent.transform.position += dir.normalized * Time.deltaTime * 5f;
+        } 
+    }
+
+
     void Update()
     {
+        if (Input.GetMouseButtonDown(1)) 
+        { 
+            RaycastHit hit; 
+            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, whatIsGrappleable2))
+            {
+                SetDestination(hit.point);
+            } 
+        }
+        Move();
+
         Grap();
     }
 
@@ -39,6 +75,8 @@ public class GrapplingGun : MonoBehaviour
     {
         DrawRope(ray);
     }
+
+
 
     void Grap()
     {
@@ -51,7 +89,6 @@ public class GrapplingGun : MonoBehaviour
             StopGrapple();
         }
     }
-
 
     void StartGrapple()
     {
