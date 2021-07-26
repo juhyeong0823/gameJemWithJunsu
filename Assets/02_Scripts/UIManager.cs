@@ -7,10 +7,11 @@ using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
-    public Button soundBtn;
+    public Button soundBtn; 
 
     public AudioMixer audioMixer;
     private float volume;
+
 
     void Start()
     {
