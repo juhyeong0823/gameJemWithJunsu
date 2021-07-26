@@ -15,13 +15,13 @@ public class PlayerRotate : MonoBehaviour // 사실상 카메라가 돌아가는 겁니다.
     float ry;
 
     public float rotSpeed = 500;
-
-
+    public Camera cam;
 
     void CanRotate()
     {
         canRotate = true;
     }
+
     void Update()
     {
         if (!canRotate) return;
