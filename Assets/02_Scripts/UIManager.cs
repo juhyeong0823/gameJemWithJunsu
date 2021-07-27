@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
+
 public class UIManager : MonoBehaviour
 {
 
@@ -34,6 +36,7 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+
     public Sprite on;
     public Sprite off;
 
@@ -54,20 +57,41 @@ public class UIManager : MonoBehaviour
 
     public GameObject escPanel;
     public Button restart;
+
     public Button goSelectScene; // 스테이지 셀렉트 하러 가기
     public Button quit;
 
+    public GameObject player;
 
     bool isMenuOpened = false;
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        player = GameObject.Find("Player");
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void Start()
     {
        restart.onClick.AddListener(() =>
        {
+           if(!player)
+           {
+               return;
+           }
            escPanel.SetActive(false);
-           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+           player.GetComponent<Player>().Re(player.GetComponent<Player>().spawn);
        });
-
-            
 
         menuOn.onClick.AddListener(() =>
         {

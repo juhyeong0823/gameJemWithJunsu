@@ -123,6 +123,88 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &169693030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169693031}
+  - component: {fileID: 169693033}
+  - component: {fileID: 169693032}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &169693031
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169693030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2053812919}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &169693032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169693030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b43fdcb726626da449e504813a99c671, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 147
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1.2
+  m_Text: "\uD50C\uB808\uC774 :\uC88C\uD074\uB9AD -> \uC0AC\uACA9 / \uC6B0\uD074\uB9AD
+    \uB85C\uD504\uB358\uC9C0\uAE30 \nEsc :  \uC7AC\uC2DC\uC791, \uB098\uAC00\uAE30,
+    \uC2A4\uD14C\uC774\uC9C0 \uC120\uD0DD \uB4F1 \uC758 \uBA54\uB274 \uC5F4\uAE30\nSpace
+    : \uBD88\uB9BF \uD0C0\uC784\uC744 \uC774\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\n"
+--- !u!222 &169693033
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169693030}
+  m_CullTransparentMesh: 1
 --- !u!1 &277955268
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,10 +379,11 @@ MonoBehaviour:
   soundSetBtn: {fileID: 1234770196}
   soundSetExit: {fileID: 859704830}
   soundSet: {fileID: 1724888712}
-  escPanel: {fileID: 1632924258}
+  escPanel: {fileID: 805073424}
   restart: {fileID: 1471420423}
   goSelectScene: {fileID: 925412042}
   quit: {fileID: 277955270}
+  player: {fileID: 0}
 --- !u!1 &451085371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,8 +1468,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -23.59505}
+  m_SizeDelta: {x: 0, y: -47.18989}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &825510180
 MonoBehaviour:
@@ -1415,13 +1498,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uC5EC\uAE30\uC5D0 \uC124\uBA85\uC744 \uC801\uC744 \uC608\uC815\uC785\uB2C8\uB2E4."
+  m_Text: "\uB3C4\uC6C0\uB9D0\n\n\n\n"
 --- !u!222 &825510181
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1582,6 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d87adb1908a6b7458d421af54853114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  neonMat: {fileID: 2100000, guid: c2c37b9591f14e7458542141434ce12b, type: 2}
   isPlaying: 0
   soundOn: 1
   stage: 1
@@ -3884,7 +3968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2053812919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3898,6 +3982,7 @@ RectTransform:
   m_Children:
   - {fileID: 825510179}
   - {fileID: 683536999}
+  - {fileID: 169693031}
   m_Father: {fileID: 1888539842}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

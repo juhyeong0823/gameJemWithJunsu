@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
+
+
     #region
     private static GameManager Instance;
     private void Awake()
@@ -31,6 +34,24 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public Material neonMat;
+    WaitForSeconds changeDelay = new WaitForSeconds(0.9f);
+
+    private void Start()
+    {
+
+
+        StartCoroutine(ChangeColor());
+    }
+
+    IEnumerator ChangeColor()
+    {
+        while(true)
+        {
+            yield return changeDelay;
+            neonMat.SetColor("_EmissionColor", new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0,0.5f)));
+        }
+    }
 
     public bool isPlaying = false;
 
