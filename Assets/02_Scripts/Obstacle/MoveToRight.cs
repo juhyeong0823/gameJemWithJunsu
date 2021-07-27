@@ -22,8 +22,4 @@ public class MoveToRight : MonoBehaviour
             transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        speed = 0f;
-    }
 }
