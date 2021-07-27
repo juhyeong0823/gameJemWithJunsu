@@ -11,16 +11,19 @@ public class MoveDown : MonoBehaviour
     [Header("반응할 거리")]
     public float interDistance = 30f;
     GameObject player;
+
     private void Awake()
     {
         player = GameObject.Find("Player");
     }
+
     void Update()
     {
         if (Mathf.Abs((player.transform.position.z - this.transform.position.z)) < interDistance)
         {
             startMove = true;
-            this.GetComponent<MeshRenderer>().material = GameManager.instance.changeMat;
+            this.GetComponent<MeshRenderer>().material.color = Color.red;
+
         }
 
         if (startMove)

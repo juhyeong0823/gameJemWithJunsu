@@ -27,13 +27,14 @@ public class Timer : MonoBehaviour
 
         timerText.text = string.Format("{0:#.##}", timerNow);
 
-        deathCountText.text = string.Format("Death : {0}", player.GetComponent<Player>().deathCount);
+        deathCountText.text = string.Format("µµÀü È½¼ö : {0}", Player.deathCount);
 
         if (timerNow <= 0f)
         {
             timerNow = 0;
             UIManager.instance.escPanel.SetActive(true);
             Time.timeScale = 0;
+            timerNow = 1;
         }
         
     }

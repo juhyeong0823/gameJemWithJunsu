@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     public Material neonMat;
 
-    public Material changeMat;
 
     float changeDelay = 1f;
 

@@ -1,36 +1,44 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public static float deathCount;
     public float speed = 10f;
-    public int deathCount;
 
     public Transform spawn;
+
+    public float bulletTimeStaminaMax;
+    public float bulletTimeStaminaNow;
+
+    public Slider bulletTimeSlider;
 
     Rigidbody rigid;
 
     public ParticleSystem speedEffect;
-
-    ParticleSystemEmissionType emission;
+    
 
     public Timer timer;
 
+    void BulletTimeUse()
+    {
+        if(Input.GetKey(KeyCode.Space))
+        {
+            bulletTimeStaminaNow -= Time.unscaledDeltaTime;
+            bulletTimeSlider.value = (float)bulletTimeStaminaMax / (float)bulletTimeStaminaNow;
+        }
+    }
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        emission = speedEffect.GetComponent<ParticleSystemEmissionType>();
+        var em = speedEffect.emission;
+        em.rateOverTime = 10f; 
     }
 
 
     Vector3 rigidVelocity;
 
-
-    public void ParticleSet()
-    {
-        //emission.
-    }
 
     void BulletTime()
     {
@@ -47,6 +55,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        BulletTimeUse();
         BulletTime();
         rigidVelocity = rigid.velocity;
 
@@ -75,12 +84,10 @@ public class Player : MonoBehaviour
     public void Re(Transform returnPos)
     {
         deathCount++;
-
-        this.transform.position = spawn.position;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         timer.GetComponent<Timer>().timerNow = timer.GetComponent<Timer>().timer;
         Time.timeScale = 1;
 
-        this.transform.localEulerAngles = new Vector3(0, 0, 0);
 
     }
 

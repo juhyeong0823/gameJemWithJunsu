@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -117,8 +116,11 @@ public class UIManager : MonoBehaviour
 
         goSelectScene.onClick.AddListener(() =>
         {
-            escPanel.SetActive(false);
+            Time.timeScale = 1;
             GameManager.instance.LoadScene("StageSelect");
+            escPanel.SetActive(false);
+            Player.deathCount = 0;
+            
         });
 
         soundSetBtn.onClick.AddListener(() =>
