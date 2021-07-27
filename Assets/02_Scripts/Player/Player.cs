@@ -5,8 +5,24 @@ public class Player : MonoBehaviour
 {
     public float speed = 10f;
 
+    Rigidbody rigid;
+
+    private void Start()
+    {
+        rigid = GetComponent<Rigidbody>();
+    }
+
+    Vector3 rigidVelocity;
+
     void Update()
     {
+        rigidVelocity = rigid.velocity;
+
+        if (rigid.velocity.z > 30)
+        {
+            rigid.velocity = new Vector3(rigidVelocity.x, rigidVelocity.y, 30);
+        }
+
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
         if(speed < 10)
