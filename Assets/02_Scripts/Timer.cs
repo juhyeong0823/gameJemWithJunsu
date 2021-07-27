@@ -25,20 +25,17 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+        timerText.text = string.Format("{0:#.##}", timerNow);
+        deathCountText.text = string.Format("µµÀü È½¼ö : {0}", Player.deathCount);
+
         if (!isFirst) return;
 
         timerNow -= Time.unscaledDeltaTime;
 
-        timerText.text = string.Format("{0:#.##}", timerNow);
-
-        deathCountText.text = string.Format("µµÀü È½¼ö : {0}", Player.deathCount);
-
         if (timerNow <= 0f)
         {
             Time.timeScale = 0;
-            timerNow = 0f;
-
-            
+            timerNow = 0f;         
             UIManager.instance.escPanel.SetActive(true);
 
             isFirst = false;
