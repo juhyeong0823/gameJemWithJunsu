@@ -124,11 +124,12 @@ public class UIManager : MonoBehaviour
             escPanel.SetActive(false);
             Player.deathCount = 0;
 
+            menuOn.gameObject.SetActive(true);
         });
 
         soundSetBtn.onClick.AddListener(() =>
         {
-           soundSet.SetActive(true);
+            soundSet.SetActive(true);
         });
        
         soundSetExit.onClick.AddListener(() =>

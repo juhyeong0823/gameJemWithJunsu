@@ -12,11 +12,13 @@ public class Player : MonoBehaviour
     public float bulletTimeStaminaNow = 5f;
 
     public Slider bulletTimeSlider;
+    public Text clearText;
+
 
     Rigidbody rigid;
 
     public ParticleSystem speedEffect;
-    
+
 
     public Timer timer;
 
@@ -105,14 +107,12 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        
-
         if (Input.GetMouseButtonDown(0))
         {
-            if (GameManager.instance.effectPlayer.isPlaying) return;
-            GameManager.instance.effectPlayer.clip = GameManager.instance.shootSound;
-            GameManager.instance.effectPlayer.Play();
-            
+            if (UIManager.instance.soundSet.activeSelf || 
+                UIManager.instance.escPanel.activeSelf ||
+                GameManager.instance.effectPlayer.isPlaying) return;
+
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
@@ -126,10 +126,14 @@ public class Player : MonoBehaviour
                 }
             }
 
-            if (timer.stageEnemyCount <= 0)
-                canClear = true;
+
+            GameManager.instance.effectPlayer.clip = GameManager.instance.shootSound;
+            GameManager.instance.effectPlayer.Play();
+
         }
 
+        if (timer.stageEnemyCount <= 0)
+            canClear = true;
     }
 
     public void Re()
@@ -137,6 +141,8 @@ public class Player : MonoBehaviour
         deathCount++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         timer.GetComponent<Timer>().timerNow = timer.GetComponent<Timer>().timer;
+
+        UIManager.instance.escPanel.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -151,9 +157,21 @@ public class Player : MonoBehaviour
         }
         else if(other.CompareTag("Clear"))
         {
-            if(canClear)
-               UIManager.instance.escPanel.SetActive(true);
             Time.timeScale = 0;
+            UIManager.instance.escPanel.SetActive(true);
+
+            if (canClear)
+            {
+                clearText.text = "Stage Clear!!";
+            }
+            else
+            {
+                clearText.text = "적을 모두 처치해주세요!";
+            }
+
+            clearText.gameObject.SetActive(true);
+
+            Destroy(other.gameObject);
 
         }
         else if(other.CompareTag("Death"))

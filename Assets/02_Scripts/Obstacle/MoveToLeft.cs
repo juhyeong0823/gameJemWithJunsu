@@ -10,11 +10,14 @@ public class MoveToLeft : MonoBehaviour
 
     [Header("반응할 거리")]
     public float interDistance = 30f;
-    GameObject player;
+    [SerializeField]
+    private GameObject player;
+
     private void Awake()
     {
         player = GameObject.Find("Player");
     }
+
     void Update()
     {
         if(Mathf.Abs((this.transform.position.z - player.transform.position.z)) < interDistance)
