@@ -29,6 +29,12 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            stageEnemyCount = 0;
+        }
+
+
         timerText.text = string.Format("{0:#.##}", timerNow);
         deathCountText.text = string.Format("µµÀü È½¼ö : {0}", Player.deathCount);
 

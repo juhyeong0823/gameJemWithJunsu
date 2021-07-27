@@ -38,7 +38,10 @@ public class Player : MonoBehaviour
     {
         bulletTimeSlider.value = (float)bulletTimeStaminaNow / (float)bulletTimeStaminaMax;
 
-        rigid = GetComponent<Rigidbody>();       
+        rigid = GetComponent<Rigidbody>();
+
+
+        GameManager.instance.effectPlayer.clip = GameManager.instance.shootSound;
     }
 
 
@@ -64,7 +67,13 @@ public class Player : MonoBehaviour
 
     void BulletTime()
     {
-        if (bulletTimeStaminaNow <= 0) return;
+        if (bulletTimeStaminaNow <= 0)
+        {
+            Time.timeScale = 1;
+            isBullet = false;
+            return;
+        }
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale = 0.5f;
@@ -80,6 +89,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
         Shoot();
         BulletTimeUse();
         BulletTime();
@@ -103,19 +113,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    public float shootDistance = 30f;
+    public float shootDistance = 50f;
 
     void Shoot()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (UIManager.instance.soundSet.activeSelf || 
+
+            if (UIManager.instance.soundSet.activeSelf ||
                 UIManager.instance.escPanel.activeSelf ||
-                GameManager.instance.effectPlayer.isPlaying) return;
+                 GameManager.instance.effectPlayer.isPlaying) return;
 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
+
 
             if (Physics.Raycast(ray, out hit, shootDistance))
             {
@@ -153,6 +165,8 @@ public class Player : MonoBehaviour
         {
             UIManager.instance.escPanel.SetActive(true);
             Time.timeScale = 0;
+            clearText.text = "Died!";
+            clearText.gameObject.SetActive(true);
 
         }
         else if(other.CompareTag("Clear"))
@@ -166,7 +180,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                clearText.text = "적을 모두 처치해주세요!";
+                clearText.text = "적이 아직 남아있어요!";
             }
 
             clearText.gameObject.SetActive(true);
@@ -178,22 +192,41 @@ public class Player : MonoBehaviour
         {
             UIManager.instance.escPanel.SetActive(true);
             Time.timeScale = 0;
+            clearText.text = "Died!";
+            clearText.gameObject.SetActive(true);
+
         }
+
+
+
     }
+
 
     private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.CompareTag("Obstacle"))
+        if (col.gameObject.CompareTag("Obstacle"))
         {
-            speed = 3f;
+            rigid.velocity = new Vector3(rigidVelocity.x, rigidVelocity.y, 10);
+            speed = 5f;
+        }
+        else if(col.gameObject.CompareTag("Enemy"))
+        {
+            UIManager.instance.escPanel.SetActive(true);
+            Time.timeScale = 0;
+
+            clearText.text = "Died!";
+            clearText.gameObject.SetActive(true);
         }
     }
+
 
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Slow"))
         {
-            speed = 3f;
+            rigid.velocity = new Vector3(rigidVelocity.x, rigidVelocity.y, 10);
+            speed = 5f;
+
         }
     }
 }

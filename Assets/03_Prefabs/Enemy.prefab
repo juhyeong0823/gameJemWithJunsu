@@ -1840,7 +1840,7 @@ GameObject:
   - component: {fileID: 1148432080464678348}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Armor_Skeleton_01_head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2702,7 +2702,7 @@ GameObject:
   - component: {fileID: 2946057860201235595}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Hips
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3659,7 +3659,7 @@ GameObject:
   - component: {fileID: 2946057860215068075}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Peasant_01_upper
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3806,7 +3806,7 @@ GameObject:
   - component: {fileID: 2946057860215068077}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Peasant_01_lower
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3951,7 +3951,7 @@ GameObject:
   - component: {fileID: 2946057860201235663}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Peasant_01_e
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4723,8 +4723,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2946057860201235721}
-  - component: {fileID: 2946057860201404718}
   - component: {fileID: 2946057860201404716}
+  - component: {fileID: 8980387280280812935}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -4740,7 +4740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2946057860201404713}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -14.21, y: 8.26, z: 8.31}
+  m_LocalPosition: {x: -14.21, y: 8.76, z: 8.31}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2946057860201235595}
@@ -4749,20 +4749,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!136 &2946057860201404718
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2946057860201404713}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1.95
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.91, z: 0}
 --- !u!114 &2946057860201404716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4777,6 +4763,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
   destroyEffect: {fileID: 247580407020290923, guid: aede0759e73169449a1d5786de08b20f, type: 3}
+--- !u!65 &8980387280280812935
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946057860201404713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &2946057860201404715
 GameObject:
   m_ObjectHideFlags: 0

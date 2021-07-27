@@ -33,13 +33,6 @@ public class StageSelecter : MonoBehaviour
             UIManager.instance.menuOn.gameObject.SetActive(false);
 
         });
-
-        stageBtns[4].onClick.AddListener(() =>
-        {
-            GameManager.instance.LoadScene("Stage5");
-            UIManager.instance.menuOn.gameObject.SetActive(false);
-
-        });
     }
 
     void Update()
