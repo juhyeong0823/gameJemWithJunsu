@@ -1831,7 +1831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neonMat: {fileID: 2100000, guid: 796c1cf9ba6b32345b2deb445a4d092a, type: 2}
-  changeMat: {fileID: 2100000, guid: 37c3595b31f395e40b5e585cbd5839ca, type: 2}
+  changeMat: {fileID: 2100000, guid: dae4efc080162d3429a01bcb2682874f, type: 2}
   bgmPlayer: {fileID: 885692700}
   effectPlayer: {fileID: 885692699}
   playBgm: {fileID: 8300000, guid: ca915a03dc95f9742b01e3e36a52b27d, type: 3}
