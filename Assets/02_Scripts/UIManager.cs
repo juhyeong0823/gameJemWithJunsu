@@ -139,17 +139,22 @@ public class UIManager : MonoBehaviour
 
         soundBtn.onClick.AddListener(() =>
         {
-            GameManager.instance.soundOn = GameManager.instance.soundOn ? false : true;
-            if(GameManager.instance.soundOn)
+            if (GameManager.instance.soundOn)
             {
-                soundBtn.GetComponent<Image>().sprite = on;
-                audioMixer.SetFloat("Master", 0.75f);
+                soundBtn.GetComponent<Image>().sprite = off;
+                GameManager.instance.bgmPlayer.Pause();
+                GameManager.instance.effectPlayer.enabled = false;
             }
             else
             {
-                soundBtn.GetComponent<Image>().sprite = off;
-                audioMixer.SetFloat("Master", 0f);
+                soundBtn.GetComponent<Image>().sprite = on;
+                GameManager.instance.bgmPlayer.UnPause();
+                GameManager.instance.effectPlayer.enabled = true;
             }
+
+            GameManager.instance.soundOn = GameManager.instance.soundOn ? false : true;
+
+
         });
 
         audioMixer.SetFloat("Master", 0.75f);
@@ -158,7 +163,7 @@ public class UIManager : MonoBehaviour
     public void SoundSet()
     {
         GameObject obj = EventSystem.current.currentSelectedGameObject; // 방금 클릭한 오브젝트를 받아오는거
-        volume = Mathf.Log10(obj.GetComponent<Slider>().value * 100f); // 클릭한거의 슬라이드 값을 받아와서 음향 조정.
+        volume = obj.GetComponent<Slider>().value; // 클릭한거의 슬라이드 값을 받아와서 음향 조정.
 
         audioMixer.SetFloat(obj.name, volume);
     }
