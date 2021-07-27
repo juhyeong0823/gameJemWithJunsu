@@ -1665,7 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d87adb1908a6b7458d421af54853114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neonMat: {fileID: 2100000, guid: c2c37b9591f14e7458542141434ce12b, type: 2}
+  neonMat: {fileID: 2100000, guid: 82dcb1572f51eff42ab260640dfb9bd5, type: 2}
   changeMat: {fileID: 2100000, guid: 37c3595b31f395e40b5e585cbd5839ca, type: 2}
   bgmPlayer: {fileID: 885692700}
   effectPlayer: {fileID: 885692699}
