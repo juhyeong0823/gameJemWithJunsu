@@ -54,13 +54,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            deathCount++;
             Re(spawn);
         }
     }
    
     public void Re(Transform returnPos)
     {
+        deathCount++;
+
         this.transform.position = spawn.position;
         timer.GetComponent<Timer>().timerNow = timer.GetComponent<Timer>().timer;
         Time.timeScale = 1;
@@ -71,13 +72,15 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Chaser"))
+
+        if (other.gameObject.CompareTag("Chaser"))
         {
             Debug.Log("¤¾");
 
             UIManager.instance.escPanel.SetActive(true);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Slow"))
