@@ -9,6 +9,7 @@ TagManager:
   - Death
   - Slow
   - Chaser
+  - Obstacle
   layers:
   - Default
   - TransparentFX

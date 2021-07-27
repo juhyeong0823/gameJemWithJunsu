@@ -75,9 +75,11 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Chaser"))
         {
-            Debug.Log("¤¾");
-
             UIManager.instance.escPanel.SetActive(true);
+        }
+        else if(other.CompareTag("Obstacle"))
+        {
+            speed = 3f;
         }
     }
 

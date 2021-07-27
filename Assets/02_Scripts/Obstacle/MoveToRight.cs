@@ -5,19 +5,23 @@ using UnityEngine;
 public class MoveToRight : MonoBehaviour
 {
     public float speed = 2f;
-
     bool startMove = false;
 
-    private void OnTriggerEnter(Collider other)
+
+    [Header("반응할 거리")]
+    public float interDistance = 30f;
+    GameObject player;
+    private void Awake()
     {
-        if (other.CompareTag("Player"))
+        player = GameObject.Find("Player");
+    }
+    void Update()
+    {
+        if (Mathf.Abs((player.transform.position.z - this.transform.position.z)) < interDistance)
         {
             startMove = true;
         }
-    }
 
-    void Update()
-    {
         if (startMove)
             transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
