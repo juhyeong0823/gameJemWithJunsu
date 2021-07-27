@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
-        timerNow -= Time.deltaTime;
+        timerNow -= Time.unscaledDeltaTime;
 
         timerText.text = string.Format("{0:#.##}", timerNow);
 
