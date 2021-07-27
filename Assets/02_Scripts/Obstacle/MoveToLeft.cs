@@ -20,10 +20,9 @@ public class MoveToLeft : MonoBehaviour
         if(Mathf.Abs((this.transform.position.z - player.transform.position.z)) < interDistance)
         {
             startMove = true;
-            this.GetComponent<MeshRenderer>().material.color = Color.red;
+            this.GetComponent<MeshRenderer>().material = GameManager.instance.changeMat;
 
         }
-
         if (startMove)
             transform.Translate(Vector3.left * speed * Time.deltaTime);
     }

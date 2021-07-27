@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public Material neonMat;
+    public Material changeMat;
 
     public AudioSource bgmPlayer;
     public AudioSource effectPlayer;

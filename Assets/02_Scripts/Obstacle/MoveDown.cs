@@ -22,7 +22,7 @@ public class MoveDown : MonoBehaviour
         if (Mathf.Abs((player.transform.position.z - this.transform.position.z)) < interDistance)
         {
             startMove = true;
-            this.GetComponent<MeshRenderer>().material.color = Color.red;
+            this.GetComponent<MeshRenderer>().material = GameManager.instance.changeMat;
 
         }
 

@@ -15,10 +15,13 @@ public class Timer : MonoBehaviour
 
     bool isFirst = true;
 
+    public float stageEnemyCount;
+
     private void Awake()
     {
         player = GameObject.Find("Player");
         timerNow = timer;
+        timeOverText.gameObject.SetActive(false);
     }
 
 
@@ -37,6 +40,7 @@ public class Timer : MonoBehaviour
             Time.timeScale = 0;
             timerNow = 0f;         
             UIManager.instance.escPanel.SetActive(true);
+            timeOverText.gameObject.SetActive(true);
 
             isFirst = false;
             

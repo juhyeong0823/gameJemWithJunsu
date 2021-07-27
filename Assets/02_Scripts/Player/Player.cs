@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public static float deathCount;
     public float speed = 10f;
-
+    public Camera cam;
 
     public float bulletTimeStaminaMax = 5f;
     public float bulletTimeStaminaNow = 5f;
@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public Timer timer;
 
     bool isBullet = false;
+    bool canClear = false;
 
 
     void BulletTimeUse()
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
+        Shoot();
         BulletTimeUse();
         BulletTime();
         rigidVelocity = rigid.velocity;
@@ -102,14 +103,35 @@ public class Player : MonoBehaviour
         }
     }
 
+    public float shootDistance = 30f;
+
+    void Shoot()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, shootDistance))
+        {
+            if(hit.transform.CompareTag("Enemy"))
+            {
+                hit.transform.GetComponent<Enemy>().DestroyThis();
+                timer.stageEnemyCount--;               
+            }
+        }
+
+        if (timer.stageEnemyCount <= 0)
+        {
+            canClear = true;
+        }
+    }
+
     public void Re()
     {
         deathCount++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         timer.GetComponent<Timer>().timerNow = timer.GetComponent<Timer>().timer;
         Time.timeScale = 1;
-
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -119,9 +141,14 @@ public class Player : MonoBehaviour
         {
             UIManager.instance.escPanel.SetActive(true);
         }
-        else if(other.CompareTag("Obstacle"))
+        else if (other.CompareTag("Obstacle"))
         {
             speed = 3f;
+        }
+        else if(other.CompareTag("Clear"))
+        {
+            if(canClear)
+               UIManager.instance.escPanel.SetActive(true);
         }
     }
 

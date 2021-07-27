@@ -20,7 +20,7 @@ public class MoveToRight : MonoBehaviour
         if (Mathf.Abs((this.transform.position.z - player.transform.position.z)) < interDistance)
         {
             startMove = true;
-            this.GetComponent<MeshRenderer>().material.color = Color.red;
+            this.GetComponent<MeshRenderer>().material = GameManager.instance.changeMat;
 
         }
 
