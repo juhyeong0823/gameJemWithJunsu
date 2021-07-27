@@ -15,14 +15,12 @@ public class MoveToLeft : MonoBehaviour
             startMove = true;
         }
     }
+
     void Update()
     {
         if (startMove)
             transform.Translate(Vector3.left * speed * Time.deltaTime);
 
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        speed = 0f;
-    }
+
 }

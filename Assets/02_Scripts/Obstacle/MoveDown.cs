@@ -15,14 +15,9 @@ public class MoveDown : MonoBehaviour
             startMove = true;
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        speed = 0f;
-    }
-
-    void Update()
-    {
-        if(startMove)
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        if (startMove)
+            transform.Translate(Vector3.down * speed * Time.deltaTime);
     }
 }
