@@ -17,6 +17,7 @@ public class Timer : MonoBehaviour
 
     public float stageEnemyCount;
 
+
     private void Awake()
     {
         player = GameObject.Find("Player");

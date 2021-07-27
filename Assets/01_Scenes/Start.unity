@@ -1671,7 +1671,7 @@ MonoBehaviour:
   effectPlayer: {fileID: 885692699}
   playBgm: {fileID: 8300000, guid: ca915a03dc95f9742b01e3e36a52b27d, type: 3}
   robbyBgm: {fileID: 8300000, guid: b7cf02600e409cb49afdbd0e315b4406, type: 3}
-  ropeSound: {fileID: 0}
+  ropeSound: {fileID: 8300000, guid: 624809e393634944f915722cd97c0d51, type: 3}
   shootSound: {fileID: 0}
   isPlaying: 0
   soundOn: 1
@@ -1702,7 +1702,7 @@ AudioSource:
   m_GameObject: {fileID: 885692696}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 3902236017364861678, guid: 831a409d4720d7045a44bbd4adf27faf, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

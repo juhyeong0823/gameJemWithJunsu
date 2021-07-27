@@ -44,6 +44,8 @@ public class GrapplingGun : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            GameManager.instance.effectPlayer.clip = GameManager.instance.ropeSound;
+            GameManager.instance.effectPlayer.Play();
             StartGrapple();
         }
         else if (Input.GetMouseButtonUp(1))
