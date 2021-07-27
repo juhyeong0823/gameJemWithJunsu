@@ -129,7 +129,7 @@ public class UIManager : MonoBehaviour
 
         soundSetBtn.onClick.AddListener(() =>
         {
-           soundSet.SetActive(true);
+            soundSet.SetActive(true);
         });
        
         soundSetExit.onClick.AddListener(() =>

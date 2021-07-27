@@ -34,7 +34,7 @@ public class Timer : MonoBehaviour
 
         if (!isFirst) return;
 
-        timerNow -= Time.unscaledDeltaTime;
+        timerNow -= Time.deltaTime;
 
         if (timerNow <= 0f)
         {
@@ -44,9 +44,6 @@ public class Timer : MonoBehaviour
             timeOverText.gameObject.SetActive(true);
 
             isFirst = false;
-            
-        }
-        
+        }       
     }
-
 }
