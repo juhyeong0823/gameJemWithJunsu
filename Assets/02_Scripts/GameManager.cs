@@ -51,17 +51,14 @@ public class GameManager : MonoBehaviour
             float t = 0;
             while(true)
             {
-                yield return null;
-                Color c = Color.Lerp(neonMat.GetColor("_EmissionColor"), targetColor, Time.time * changeDelay);
+                Color c = Color.Lerp(neonMat.GetColor("_EmissionColor"), targetColor, Time.deltaTime * changeDelay);
                 neonMat.SetColor("_EmissionColor", c);
+                yield return null;
 
                 t += Time.deltaTime;
 
                 if (t >= changeDelay) break;
             }
-
-
-            //neonMat.SetColor("_EmissionColor", new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0,0.5f)));
         }
     }
 
