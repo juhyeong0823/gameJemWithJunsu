@@ -32,8 +32,6 @@ public class GrapplingGun : MonoBehaviour
 
     void Update()
     {
-
-
         Grap();
     }
 

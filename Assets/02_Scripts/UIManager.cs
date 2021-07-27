@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
 
@@ -48,55 +48,52 @@ public class UIManager : MonoBehaviour
     public Button soundSetBtn;
     public Button soundSetExit;
     public GameObject soundSet;
+
+
+    [Header("메뉴")]
+
+    public GameObject escPanel;
+    public Button restart;
+    public Button goSelectScene; // 스테이지 셀렉트 하러 가기
     public Button quit;
 
-    [Header("죽었을 때 재시작 메뉴")]
-    public Canvas restartPanel;
-
-    public Button restartBtn; // 다시 시작
-    public Button continueBtn; //그냥 pause 풀기
-    public Button goSelectScene; // 스테이지 셀렉트 하러 가기
 
     bool isMenuOpened = false;
     void Start()
     {
+       restart.onClick.AddListener(() =>
+       {
+           escPanel.SetActive(false);
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       });
+
+            
+
         menuOn.onClick.AddListener(() =>
         {
             if (!isMenuOpened)
             {
                 soundSetBtn.gameObject.SetActive(true);
-                quit.gameObject.SetActive(true);
-
                 isMenuOpened = true;
             }
             else
             {
                 soundSetBtn.gameObject.SetActive(false);
-                quit.gameObject.SetActive(false);
-
                 isMenuOpened = false;
             }
             
         });
 
-       quit.onClick.AddListener(() =>
-       {
-           print("체크");
-           Application.Quit();
-       });
-
-        restartBtn.onClick.AddListener(() =>
+        quit.onClick.AddListener(() =>
         {
-            GameManager.instance.LoadScene(GameManager.instance.GetSceneName());
-        });
+            escPanel.SetActive(false);
 
-        continueBtn.onClick.AddListener(() =>
-        {
-            Time.timeScale = 1;
+            Application.Quit();
         });
 
         goSelectScene.onClick.AddListener(() =>
         {
+            escPanel.SetActive(false);
             GameManager.instance.LoadScene("StageSelect");
         });
 
@@ -104,8 +101,7 @@ public class UIManager : MonoBehaviour
         {
            soundSet.SetActive(true);
         });
-
-        
+       
         soundSetExit.onClick.AddListener(() =>
         {
             soundSet.SetActive(false);
@@ -138,25 +134,23 @@ public class UIManager : MonoBehaviour
         audioMixer.SetFloat(obj.name, volume);
     }
 
-    bool isPause = false;
+    bool escPanelOn = false;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!isPause)
+            if(!escPanelOn)
             {
-                Time.timeScale = 0;
-                restartPanel.enabled = true;
+                escPanel.SetActive(true);
 
-                isPause = true;
+                escPanelOn = true;
             }
             else
             {
-                Time.timeScale = 1;
-                restartPanel.enabled = false;
+                escPanel.SetActive(false);
 
-                isPause = false;
+                escPanelOn = false;
 
             }
         }

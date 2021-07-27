@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         }
         else if(col.gameObject.CompareTag("Chaser"))
         {
-            UIManager.instance.restartPanel.enabled = true;
+            UIManager.instance.escPanel.SetActive(true);
         }
     }
 }
