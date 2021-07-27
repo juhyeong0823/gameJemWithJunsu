@@ -30,8 +30,6 @@ public class Player : MonoBehaviour
         {
             bulletTimeStaminaNow -= Time.unscaledDeltaTime;
             bulletTimeSlider.value = (float)bulletTimeStaminaNow / (float)bulletTimeStaminaMax;
-
-           
         }
     }
     private void Start()
@@ -107,23 +105,31 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        
 
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, shootDistance))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(hit.transform.CompareTag("Enemy"))
+            if (GameManager.instance.effectPlayer.isPlaying) return;
+            GameManager.instance.effectPlayer.clip = GameManager.instance.shootSound;
+            GameManager.instance.effectPlayer.Play();
+            
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, shootDistance))
             {
-                hit.transform.GetComponent<Enemy>().DestroyThis();
-                timer.stageEnemyCount--;               
+                if (hit.transform.CompareTag("Enemy"))
+                {
+                    hit.transform.GetComponent<Enemy>().DestroyThis();
+                    timer.stageEnemyCount--;
+                }
             }
+
+            if (timer.stageEnemyCount <= 0)
+                canClear = true;
         }
 
-        if (timer.stageEnemyCount <= 0)
-        {
-            canClear = true;
-        }
     }
 
     public void Re()
@@ -140,15 +146,28 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Chaser"))
         {
             UIManager.instance.escPanel.SetActive(true);
-        }
-        else if (other.CompareTag("Obstacle"))
-        {
-            speed = 3f;
+            Time.timeScale = 0;
+
         }
         else if(other.CompareTag("Clear"))
         {
             if(canClear)
                UIManager.instance.escPanel.SetActive(true);
+            Time.timeScale = 0;
+
+        }
+        else if(other.CompareTag("Death"))
+        {
+            UIManager.instance.escPanel.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.CompareTag("Obstacle"))
+        {
+            speed = 3f;
         }
     }
 
