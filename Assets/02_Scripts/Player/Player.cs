@@ -11,16 +11,26 @@ public class Player : MonoBehaviour
 
     Rigidbody rigid;
 
+    public ParticleSystem speedEffect;
+
+    ParticleSystemEmissionType emission;
+
     public Timer timer;
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        
+        emission = speedEffect.GetComponent<ParticleSystemEmissionType>();
     }
 
 
     Vector3 rigidVelocity;
+
+
+    public void ParticleSet()
+    {
+        //emission.
+    }
 
     void BulletTime()
     {
@@ -33,6 +43,7 @@ public class Player : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
 
     void Update()
     {
@@ -57,7 +68,10 @@ public class Player : MonoBehaviour
             Re(spawn);
         }
     }
-   
+
+
+            
+
     public void Re(Transform returnPos)
     {
         deathCount++;

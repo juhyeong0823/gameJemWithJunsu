@@ -20,6 +20,7 @@ public class MoveToLeft : MonoBehaviour
         if(Mathf.Abs((player.transform.position.z - this.transform.position.z)) < interDistance)
         {
             startMove = true;
+            this.GetComponent<MeshRenderer>().material = GameManager.instance.changeMat;
         }
 
         if (startMove)
