@@ -40,6 +40,7 @@ public class GrapplingGun : MonoBehaviour
         DrawRope(ray);
     }
 
+
     void Grap()
     {
         if (Input.GetMouseButtonDown(1))

@@ -105,13 +105,14 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        
-
         if (Input.GetMouseButtonDown(0))
         {
-            if (GameManager.instance.effectPlayer.isPlaying) return;
-            GameManager.instance.effectPlayer.clip = GameManager.instance.shootSound;
-            GameManager.instance.effectPlayer.Play();
+            if (UIManager.instance.soundSet.activeSelf || 
+                UIManager.instance.escPanel.activeSelf ||
+                GameManager.instance.effectPlayer.isPlaying) return;
+
+
+
             
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -125,6 +126,10 @@ public class Player : MonoBehaviour
                     timer.stageEnemyCount--;
                 }
             }
+
+
+            GameManager.instance.effectPlayer.clip = GameManager.instance.shootSound;
+            GameManager.instance.effectPlayer.Play();
 
             if (timer.stageEnemyCount <= 0)
                 canClear = true;
