@@ -69,14 +69,15 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision col)
+    private void OnTriggerEnter(Collider other)
     {
-        if(col.gameObject.CompareTag("Chaser"))
+        if (other.CompareTag("Chaser"))
         {
+            Debug.Log("¤¾");
+
             UIManager.instance.escPanel.SetActive(true);
         }
     }
-
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Slow"))
