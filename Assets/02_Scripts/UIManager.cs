@@ -80,6 +80,8 @@ public class UIManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    
+
     void Start()
     {
        restart.onClick.AddListener(() =>
@@ -89,7 +91,8 @@ public class UIManager : MonoBehaviour
                return;
            }
            escPanel.SetActive(false);
-           player.GetComponent<Player>().Re(player.GetComponent<Player>().spawn);
+           player.GetComponent<Player>().Re();
+
        });
 
         menuOn.onClick.AddListener(() =>
@@ -120,7 +123,7 @@ public class UIManager : MonoBehaviour
             GameManager.instance.LoadScene("StageSelect");
             escPanel.SetActive(false);
             Player.deathCount = 0;
-            
+
         });
 
         soundSetBtn.onClick.AddListener(() =>
@@ -169,15 +172,12 @@ public class UIManager : MonoBehaviour
             if(!escPanelOn)
             {
                 escPanel.SetActive(true);
-
                 escPanelOn = true;
             }
             else
             {
                 escPanel.SetActive(false);
-
                 escPanelOn = false;
-
             }
         }
     }

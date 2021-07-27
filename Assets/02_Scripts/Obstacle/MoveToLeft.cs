@@ -17,7 +17,7 @@ public class MoveToLeft : MonoBehaviour
     }
     void Update()
     {
-        if(Mathf.Abs((player.transform.position.z - this.transform.position.z)) < interDistance)
+        if(Mathf.Abs((this.transform.position.z - player.transform.position.z)) < interDistance)
         {
             startMove = true;
             this.GetComponent<MeshRenderer>().material.color = Color.red;

@@ -7,10 +7,9 @@ public class Player : MonoBehaviour
     public static float deathCount;
     public float speed = 10f;
 
-    public Transform spawn;
 
-    public float bulletTimeStaminaMax;
-    public float bulletTimeStaminaNow;
+    public float bulletTimeStaminaMax = 5f;
+    public float bulletTimeStaminaNow = 5f;
 
     public Slider bulletTimeSlider;
 
@@ -21,40 +20,66 @@ public class Player : MonoBehaviour
 
     public Timer timer;
 
+    bool isBullet = false;
+
+
     void BulletTimeUse()
     {
         if(Input.GetKey(KeyCode.Space))
         {
             bulletTimeStaminaNow -= Time.unscaledDeltaTime;
-            bulletTimeSlider.value = (float)bulletTimeStaminaMax / (float)bulletTimeStaminaNow;
+            bulletTimeSlider.value = (float)bulletTimeStaminaNow / (float)bulletTimeStaminaMax;
+
+           
         }
     }
     private void Start()
     {
-        rigid = GetComponent<Rigidbody>();
-        var em = speedEffect.emission;
-        em.rateOverTime = 10f; 
+        bulletTimeSlider.value = (float)bulletTimeStaminaNow / (float)bulletTimeStaminaMax;
+
+        rigid = GetComponent<Rigidbody>();       
     }
 
+
+    void ParticleSet()
+    {
+        if (isBullet)
+        {
+            var em = speedEffect.emission;
+            em.rateOverTime = 25;
+        }
+        else if (speed > 20f)
+        {
+            speedEffect.startSpeed =100f;
+            var em = speedEffect.emission;
+            em.rateOverTime = 100f;
+
+        }
+
+    }
 
     Vector3 rigidVelocity;
 
 
     void BulletTime()
     {
+        if (bulletTimeStaminaNow <= 0) return;
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Time.timeScale = 0.5f;
+            isBullet = true;
         }    
         else if(Input.GetKeyUp(KeyCode.Space))
         {
             Time.timeScale = 1f;
+            isBullet = false;
         }
     }
 
 
     void Update()
     {
+        
         BulletTimeUse();
         BulletTime();
         rigidVelocity = rigid.velocity;
@@ -71,17 +96,13 @@ public class Player : MonoBehaviour
             speed += Time.deltaTime * 5f;
         }
 
-
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Re(spawn);
+            Re();
         }
     }
 
-
-            
-
-    public void Re(Transform returnPos)
+    public void Re()
     {
         deathCount++;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

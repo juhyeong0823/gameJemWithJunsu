@@ -13,6 +13,8 @@ public class Timer : MonoBehaviour
 
     GameObject player;
 
+    bool isFirst = true;
+
     private void Awake()
     {
         player = GameObject.Find("Player");
@@ -23,6 +25,8 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
+        if (!isFirst) return;
+
         timerNow -= Time.unscaledDeltaTime;
 
         timerText.text = string.Format("{0:#.##}", timerNow);
@@ -31,10 +35,14 @@ public class Timer : MonoBehaviour
 
         if (timerNow <= 0f)
         {
-            timerNow = 0;
-            UIManager.instance.escPanel.SetActive(true);
             Time.timeScale = 0;
-            timerNow = 1;
+            timerNow = 0f;
+
+            
+            UIManager.instance.escPanel.SetActive(true);
+
+            isFirst = false;
+            
         }
         
     }

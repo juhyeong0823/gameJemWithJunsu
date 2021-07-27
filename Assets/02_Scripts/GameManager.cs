@@ -36,6 +36,15 @@ public class GameManager : MonoBehaviour
 
     public Material neonMat;
 
+    public AudioSource bgmPlayer;
+    public AudioSource effectPlayer;
+
+    public AudioClip playBgm; 
+    public AudioClip robbyBgm;
+
+    public AudioClip ropeSound;
+    public AudioClip shootSound;
+
 
     float changeDelay = 1f;
 
@@ -86,4 +95,6 @@ public class GameManager : MonoBehaviour
     {
         return SceneManager.GetActiveScene().name;
     }
+
+    
 }

@@ -1666,7 +1666,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neonMat: {fileID: 2100000, guid: c2c37b9591f14e7458542141434ce12b, type: 2}
-  changeMat: {fileID: 2100000, guid: 4064efead122dc34698ef577c91f7dc0, type: 2}
+  bgmPlayer: {fileID: 885692700}
+  effectPlayer: {fileID: 885692699}
+  playBgm: {fileID: 8300000, guid: ca915a03dc95f9742b01e3e36a52b27d, type: 3}
+  robbyBgm: {fileID: 8300000, guid: b7cf02600e409cb49afdbd0e315b4406, type: 3}
+  ropeSound: {fileID: 0}
+  shootSound: {fileID: 0}
   isPlaying: 0
   soundOn: 1
   stage: 1
@@ -1793,7 +1798,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3553539683924552772, guid: 831a409d4720d7045a44bbd4adf27faf, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b7cf02600e409cb49afdbd0e315b4406, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
