@@ -35,21 +35,33 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public Material neonMat;
-    WaitForSeconds changeDelay = new WaitForSeconds(0.9f);
+    float changeDelay = 1f;
 
     private void Start()
     {
-
-
         StartCoroutine(ChangeColor());
     }
-
+    
     IEnumerator ChangeColor()
     {
         while(true)
         {
-            yield return changeDelay;
-            neonMat.SetColor("_EmissionColor", new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0,0.5f)));
+            Color targetColor = new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 0.5f));
+
+            float t = 0;
+            while(true)
+            {
+                yield return null;
+                Color c = Color.Lerp(neonMat.GetColor("_EmissionColor"), targetColor, Time.time * changeDelay);
+                neonMat.SetColor("_EmissionColor", c);
+
+                t += Time.deltaTime;
+
+                if (t >= changeDelay) break;
+            }
+
+
+            //neonMat.SetColor("_EmissionColor", new Color(Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0, 1f), Random.Range(0,0.5f)));
         }
     }
 
