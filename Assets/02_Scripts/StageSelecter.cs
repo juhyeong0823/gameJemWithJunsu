@@ -1,11 +1,54 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class StageSelecter : MonoBehaviour
 {
-    public Button[] stageBtns; 
-    
+    public Button[] stageBtns;
+    public GameObject[] lockPanel;
+    public GameObject[] clearCheck;
+
+    public void ExplainOn(GameObject on)
+    {
+        on.SetActive(true);
+    }
+
+    public void ExplainOff(GameObject on)
+    {
+        on.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        for (int i = 0; i < GameManager.instance.cleardStage; i++)
+        {
+            if (i >= 3) break;
+
+            lockPanel[i].SetActive(false);
+        }
+
+        for (int i = 0; i < GameManager.instance.cleardStage; i++)
+        {
+
+            clearCheck[i].SetActive(true);
+        }
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     void Start()
     {
+        
+
+
 
         stageBtns[0].onClick.AddListener(() =>
         {

@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
     public float speed = 10f;
     public Camera cam;
 
-    public float bulletTimeStaminaMax = 5f;
-    public float bulletTimeStaminaNow = 5f;
+    public float bulletTimeStaminaMax = 1000f;
+    public float bulletTimeStaminaNow = 1000f;
 
     public Slider bulletTimeSlider;
     public Text clearText;
@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
 
         Shoot();
         BulletTimeUse();
@@ -177,6 +178,24 @@ public class Player : MonoBehaviour
             if (canClear)
             {
                 clearText.text = "Stage Clear!!";
+
+                if(other.gameObject.name == "Door1")
+                {
+                    GameManager.instance.cleardStage = 1;
+                }
+                else if (other.gameObject.name == "Door2")
+                {
+                    GameManager.instance.cleardStage = 2;
+                }
+                else if (other.gameObject.name == "Door3")
+                {
+                    GameManager.instance.cleardStage = 3;
+                }
+                else if (other.gameObject.name == "Door4")
+                {
+                    GameManager.instance.cleardStage = 4;
+                }
+
             }
             else
             {
@@ -206,7 +225,6 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
         {
-            rigid.velocity = new Vector3(rigidVelocity.x, rigidVelocity.y, 10);
             speed = 5f;
         }
         else if(col.gameObject.CompareTag("Enemy"))
@@ -224,7 +242,6 @@ public class Player : MonoBehaviour
     {
         if(other.CompareTag("Slow"))
         {
-            rigid.velocity = new Vector3(rigidVelocity.x, rigidVelocity.y, 10);
             speed = 5f;
 
         }

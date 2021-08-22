@@ -113,7 +113,6 @@ public class UIManager : MonoBehaviour
         quit.onClick.AddListener(() =>
         {
             escPanel.SetActive(false);
-
             Application.Quit();
         });
 

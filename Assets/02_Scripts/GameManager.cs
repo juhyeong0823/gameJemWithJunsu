@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+
+    public SaveManager saveManager;
+
     public Material neonMat;
     public Material changeMat;
 
@@ -51,9 +54,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        saveManager.Load();
         StartCoroutine(ChangeColor());
     }
-    
+
+
+    private void OnApplicationQuit()
+    {
+        saveManager.Save();
+    }
+
     IEnumerator ChangeColor()
     {
         while(true)
@@ -79,7 +89,7 @@ public class GameManager : MonoBehaviour
     public bool soundOn = true;
 
     [Header("게임 데이터들")] // 인스펙터에서 이걸로 보여줌
-    public int stage = 1;
+    public int cleardStage = 0;
 
 
     [Header("음향")] // 인스펙터에서 이걸로 보여줌
