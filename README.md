@@ -1,1 +1,1 @@
-# gameJemWithJunsu
+# 교내 게임잼 대회에서 만든 런 게임입니다
