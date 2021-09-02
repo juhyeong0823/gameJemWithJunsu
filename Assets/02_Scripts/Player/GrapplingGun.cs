@@ -72,8 +72,16 @@ public class GrapplingGun : MonoBehaviour
 
             float distanceToPoint = Vector3.Distance(grapplePoint, shootPos.position);
 
-            joint.maxDistance = distanceToPoint * 0.8f;
-            joint.maxDistance = distanceToPoint * 0.4f;
+            if(hit.transform.name == "StartCube")
+            {
+                joint.maxDistance = distanceToPoint * 0.4f;
+            }
+            else
+            {
+                joint.maxDistance = distanceToPoint;
+                joint.minDistance = distanceToPoint * 0.2f;
+            }
+            
 
             lr.positionCount = 2;
         }

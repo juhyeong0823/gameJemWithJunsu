@@ -54,7 +54,6 @@ public class Player : MonoBehaviour
         }
         else if (speed > 20f)
         {
-            speedEffect.startSpeed =100f;
             var em = speedEffect.emission;
             em.rateOverTime = 100f;
 
@@ -103,7 +102,7 @@ public class Player : MonoBehaviour
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        if(speed < 10)
+        if (speed < 10)
         {
             speed += Time.deltaTime * 5f;
         }
