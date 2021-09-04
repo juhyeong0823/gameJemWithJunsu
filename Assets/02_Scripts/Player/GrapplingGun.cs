@@ -6,7 +6,7 @@ public class GrapplingGun : MonoBehaviour
 {
     private LineRenderer lr; // 로프 그려주는거고
 
-    [SerializeField]  private GameObject gun; // 라인렌더러 받아오는 용도로 만들어놓은 겁니다.
+    [SerializeField] private GameObject gun; // 라인렌더러 받아오는 용도로 만들어놓은 겁니다.
 
     private Vector3 grapplePoint;
 
@@ -32,6 +32,7 @@ public class GrapplingGun : MonoBehaviour
 
     void Update()
     {
+        if (Player.isDied) return;
         Grap();
     }
 
@@ -56,11 +57,13 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
+    RaycastHit hit;
+
     void StartGrapple()
     {
         ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        RaycastHit hit;
+        
 
         if (Physics.Raycast(ray, out hit, maxDistance, whatIsGrappleable))
         {
@@ -70,18 +73,11 @@ public class GrapplingGun : MonoBehaviour
             joint.autoConfigureConnectedAnchor = false;
             joint.connectedAnchor = grapplePoint;
 
+
             float distanceToPoint = Vector3.Distance(grapplePoint, shootPos.position);
 
-            if(hit.transform.name == "StartCube")
-            {
-                joint.maxDistance = distanceToPoint * 0.4f;
-            }
-            else
-            {
-                joint.maxDistance = distanceToPoint;
-                joint.minDistance = distanceToPoint * 0.2f;
-            }
-            
+            joint.maxDistance = distanceToPoint * 0.6f; // 로프의 최대 길이, 그니까 0.2배가 될 때까지 로프를 줄이면서 플레이어가 날아가고, min distance가 없어서 쭉 날아감!
+
 
             lr.positionCount = 2;
         }
@@ -90,6 +86,8 @@ public class GrapplingGun : MonoBehaviour
     void StopGrapple()
     {
         lr.positionCount = 0;
+        if(hit.transform != null && hit.transform.name != "Floor")
+         hit.transform.gameObject.SetActive(false);
         Destroy(joint);
     }
 

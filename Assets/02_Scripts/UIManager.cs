@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class UIManager : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour
     [Header("¸Þ´º!")]
     public Button menuOn;
 
+    bool isSoundMenuOn = false;
     public Button soundSetBtn;
     public Button soundSetExit;
     public GameObject soundSet;
@@ -100,11 +102,13 @@ public class UIManager : MonoBehaviour
             if (!isMenuOpened)
             {
                 soundSetBtn.gameObject.SetActive(true);
+                soundSet.SetActive(false);
                 isMenuOpened = true;
             }
             else
             {
                 soundSetBtn.gameObject.SetActive(false);
+                soundSet.SetActive(false);
                 isMenuOpened = false;
             }
             
@@ -125,16 +129,14 @@ public class UIManager : MonoBehaviour
 
             menuOn.gameObject.SetActive(true);
         });
+        
 
         soundSetBtn.onClick.AddListener(() =>
         {
-            soundSet.SetActive(true);
+            isSoundMenuOn = !soundSet.activeSelf;
+            soundSet.SetActive(isSoundMenuOn);
         });
-       
-        soundSetExit.onClick.AddListener(() =>
-        {
-            soundSet.SetActive(false);
-        });
+
 
 
         soundBtn.onClick.AddListener(() =>

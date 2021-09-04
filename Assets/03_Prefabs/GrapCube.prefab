@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 505335271263169693}
   - component: {fileID: 5078657637531091093}
   - component: {fileID: 5078657637531091092}
+  - component: {fileID: 5191009933791952376}
   m_Layer: 3
   m_Name: GrapCube
   m_TagString: Untagged
@@ -73,7 +74,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 63de7f21ff81bd74ea10f1a688368a4d, type: 2}
+  - {fileID: 2100000, guid: 585b5a363c915194cb9e409cf947e1b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,3 +109,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5191009933791952376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078657637531091090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c654fd84cd28a34a8f9d20447e4a7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,11 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class GrappleableObj : MonoBehaviour
 {
     private MeshRenderer mesh;
-    GameObject p;
 
-    private void Awake()
+    GameObject p;
+    bool canChanged = true;
+
+    private void Start()
     {
         p = GameObject.Find("Player");
         mesh = GetComponent<MeshRenderer>();
@@ -15,17 +18,11 @@ public class GrappleableObj : MonoBehaviour
 
     private void Update()
     {
-        
-        if(Mathf.Abs(Vector3.Distance(p.transform.position, this.transform.position)) < 40f)
+        if (canChanged && Mathf.Abs(Vector3.Distance(transform.position, p.transform.position)) < 40f)
         {
-            mesh.material.color = new Color(0, 44, 255, 1);
-        }
-        else
-        {
-            mesh.material.color = new Color(0, 44, 255, 0.3f);
+            Debug.LogError(Vector3.Distance(transform.position, p.transform.position));
+            mesh.material = GameManager.instance.grappleableMat;
+            canChanged = false;
         }
     }
-
-
-
 }

@@ -1,11 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-
-
     #region
     private static GameManager Instance;
     private void Awake()
@@ -39,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public Material neonMat;
     public Material changeMat;
+    public Material grappleableMat;
 
     public AudioSource bgmPlayer;
     public AudioSource effectPlayer;
